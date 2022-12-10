@@ -1,35 +1,53 @@
 const createNode = () => {
 	const node = new Map();
-	node.set("results", new Set());
+	node.set("results", new Map());
 	return node;
 };
 
 const root = createNode();
 
-const buildTrie = () => {
-	const processWord = (index, word) => {
+const buildTrie = (files) => {
+	const processWord = (fileName, word) => {
 		let current = root;
-		for (const letter of word.toLowerCase()) {
-			if (!current.has(letter)) {
-				current.set(letter, createNode());
-			}
-			current = current.get(letter);
-			current.get("results").add(index);
-		}
+
+		word.split("").forEach((char) => {
+			let occurrence = 0;
+			if (!current.has(char)) current.set(char, createNode());
+			current = current.get(char);
+			if (current.get("results").has(fileName))
+				occurrence = current.get("results").get(fileName);
+			current.get("results").set(fileName, occurrence + 1);
+		});
 	};
 
-	const processTextSnippet = (index, textSnippet) => {
-		words = textSnippet.split(" ");
-		for (const word of words) {
-			processWord(index, word);
-		}
+	const processTextSnippet = (fileName, fileData) => {
+		fileData.forEach((word) => {
+			processWord(fileName, word);
+		});
 	};
 
-	for (let i = 0; i < textSnippets.length; i++) {
-		processTextSnippet(i, textSnippets[i]);
+	files.forEach((file) => {
+		processTextSnippet(file.file, file.data);
+	});
+
+	return root;
+};
+
+const renderSearchResults = (resultMap) => {
+	return Object.fromEntries(resultMap);
+};
+
+const search = (trieMap, text) => {
+	for (const letter of text.toLowerCase()) {
+		if (!trieMap.has(letter)) {
+			return renderSearchResults(new Set());
+		}
+		trieMap = trieMap.get(letter);
 	}
+	return renderSearchResults(trieMap.get("results"));
 };
 
 module.exports = {
 	buildTrie,
+	search,
 };
