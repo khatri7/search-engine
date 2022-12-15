@@ -12,21 +12,22 @@ The data structure used for this project is a [Trie](https://en.wikipedia.org/wi
 
 ```javascript
 {
-    a: {
-		results: {}, // results for word 'a'
-	},
-	t: {
-		h: {
-			e: {
-				results: { // results for word 'the'
-					"Neymar - Wikipedia.html": 2,
-					"Real Madrid CF - Wikipedia.html": 1,
-				},
-			},
-			results: {}, // results for word 'th'
-		},
-        results: {}, // results for word 't'
-	},
+  a: {
+    results: {}, // results for word 'a'
+  },
+  t: {
+    h: {
+      e: {
+        results: {
+          // results for word 'the'
+          "Neymar - Wikipedia.html": 2,
+          "Real Madrid CF - Wikipedia.html": 1,
+        },
+      },
+      results: {}, // results for word 'th'
+    },
+    results: {}, // results for word 't'
+  },
 }
 ```
 
