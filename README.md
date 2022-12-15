@@ -4,7 +4,7 @@ This is a NodeJS word search engine that returns the number of times a word has 
 
 ## Static Data (Input Files)
 
-For the purpose for of this project, at the moment, static HTML documents have been used but it could easily be extended to fetch them based on the endpoint. The files are placed in the [`data` directory](./data/).
+For the purpose of this project, currently, static HTML documents have been used but it could easily be extended to fetch them based on the endpoint. The files are placed in the [`data` directory](./data/).
 
 ## Data Structure and Algorithm used
 
@@ -44,7 +44,7 @@ The Trie is prepared when the application starts for all the files present in th
 - remove all non alpha numeric characters
 - condense the file: remove all extra spaces, such as tabs (`\t`) and next lines (`\n`)
 
-After this the list of words from the cleaned text for each file is added ot the Trie as follows:
+After this the list of words from the cleaned text for each file is added to the Trie as follows:
 
 1. One word is taken at a time
 2. Iterate over all the characters of the word starting from the first character
@@ -56,7 +56,7 @@ After this the list of words from the cleaned text for each file is added ot the
 
 ### Searching the Trie
 
-Getting the results for a word is very similar to how we created the Trie. We take the word user inputs, convert it to lowercase and iterate over it looking for a key in the Map for each letter and move onto the value Map for every match, at any point if there is no match, we return an empty result set. Otherwise, we keep iterating till we reach the last letter, at which stage we get the `results` Map at that key and print that in form of a table with file names sorted in descending order of occurrences.
+Getting the results for a word is very similar to how we created the Trie. We take the word user inputs, convert it to lowercase and iterate over it. We look for a key in the Map for each letter starting from the first letter and move onto the value Map for every match. At any point if there is no match, we return an empty result set. Otherwise, we keep iterating till we reach the last letter, at which stage we get the `results` Map at that key and print that in form of a table with file names sorted in descending order of number of occurrences.
 
 ## How to run
 
