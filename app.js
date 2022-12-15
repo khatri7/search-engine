@@ -8,7 +8,6 @@ const readline = require("readline").createInterface({
 	output: process.stdout,
 });
 const Trie = require("./trie");
-const { resolve } = require("path");
 
 const filesDirectory = path.resolve("data");
 
@@ -57,7 +56,7 @@ const main = async () => {
 		const trie = new Trie(files);
 		let userInput = await getUserInput();
 		while (userInput !== ":q") {
-			const result = trie.search(userInput);
+			console.log(result);
 			console.log("\nSearch Result: ");
 			const resultArr = Object.entries(result)
 				.sort((a, b) => b[1] - a[1])
