@@ -56,7 +56,7 @@ const main = async () => {
 		const trie = new Trie(files);
 		let userInput = await getUserInput();
 		while (userInput !== ":q") {
-			console.log(result);
+			const result = await trie.search(userInput);
 			console.log("\nSearch Result: ");
 			const resultArr = Object.entries(result)
 				.sort((a, b) => b[1] - a[1])
